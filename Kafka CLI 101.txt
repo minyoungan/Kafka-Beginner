@@ -1,0 +1,17 @@
+1. start 
+minyoungan@MacBook kafka_2.13-3.2.0 % zookeeper-server-start config/zookeeper.properties 
+minyoungan@MacBook kafka_2.13-3.2.0 % kafka-server-start config/server.properties 
+
+2. reference zookeeper
+kafka-topics --bootstrap-server 127.0.0.1:9092 --topic first_topic --create --partitions 3 --replication-factor 1
+kafka-topics --bootstrap-server 127.0.0.1:9092 --list
+kafka-topics --bootstrap-server 127.0.0.1:9092 --topic first_topic --describe
+kafka-topics --bootstrap-server 127.0.0.1:9092 --topic second_topic --create --partitions 6 --replication-factor 1
+kafka-topics --bootstrap-server 127.0.0.1:9092 --list
+
+kafka-console-producer --bootstrap-server 127.0.0.1:9092 --topic first_topic
+kafka-console-producer --bootstrap-server 127.0.0.1:9092 --topic first_topic --producer-property acks=all
+
+# consume
+kafka-console-consumer --bootstrap-server 127.0.0.1:9092 --topic first_topic
+kafka-console-consumer --bootstrap-server 127.0.0.1:9092 --topic first_topic
